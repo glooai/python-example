@@ -18,7 +18,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: pip
+          cache: pipenv
+          cache-dependency-path: Pipfile.lock
 
       - name: Install pipenv
         run: python -m pip install --upgrade pip pipenv
@@ -43,7 +44,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: pip
+          cache: pipenv
+          cache-dependency-path: Pipfile.lock
 
       - name: Install pipenv
         run: python -m pip install --upgrade pip pipenv
@@ -68,7 +70,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: pip
+          cache: pipenv
+          cache-dependency-path: Pipfile.lock
 
       - name: Install pipenv
         run: python -m pip install --upgrade pip pipenv
