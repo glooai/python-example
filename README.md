@@ -29,6 +29,14 @@ This minimal example was built in response to the Slack thread in `#support-gloo
 pipenv run gloo-chat
 ```
 
+## Format
+
+```bash
+pipenv run format
+```
+
+Uses `black` via the Pipfile script to format the repository.
+
 ## Notes / troubleshooting
 
 - A 403 usually means the token lacks the right scope or the Authorization header is malformed. This example uses `grant_type=client_credentials` with `scope=api/access` and sets `Authorization: Bearer <token>`, matching the published quickstart.
