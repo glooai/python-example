@@ -9,6 +9,8 @@ This minimal example was built in response to the Slack thread in `#support-gloo
 - Calls the chat completions endpoint using `meta.llama3-70b-instruct-v1:0`.
 - Prints the token expiration and the JSON completion response.
 
+For the full walkthrough, see the official quickstart docs: https://docs.gloo.com/getting-started/quickstart-developers.
+
 ## Setup
 
 1. Ensure Python 3.11 is available.
