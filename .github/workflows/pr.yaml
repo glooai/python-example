@@ -25,13 +25,9 @@ jobs:
         run: python -m pip install --upgrade pip pipenv
 
       - name: Install dependencies
-        env:
-          PIPENV_VENV_IN_PROJECT: 1
         run: pipenv install --deploy --ignore-pipfile
 
       - name: Format check
-        env:
-          PIPENV_VENV_IN_PROJECT: 1
         run: pipenv run format:check
 
   test:
@@ -51,13 +47,9 @@ jobs:
         run: python -m pip install --upgrade pip pipenv
 
       - name: Install dependencies
-        env:
-          PIPENV_VENV_IN_PROJECT: 1
         run: pipenv install --deploy --ignore-pipfile
 
       - name: Run tests
-        env:
-          PIPENV_VENV_IN_PROJECT: 1
         run: pipenv run test
 
   test-coverage:
@@ -77,11 +69,7 @@ jobs:
         run: python -m pip install --upgrade pip pipenv
 
       - name: Install dependencies
-        env:
-          PIPENV_VENV_IN_PROJECT: 1
         run: pipenv install --deploy --ignore-pipfile
 
       - name: Run coverage tests
-        env:
-          PIPENV_VENV_IN_PROJECT: 1
         run: pipenv run test:coverage
