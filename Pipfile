@@ -4,9 +4,21 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+requests = "*"
+python-dotenv = "*"
+pyjwt = "*"
 black = "*"
 
 [dev-packages]
+pytest = "*"
+pytest-cov = "*"
 
 [requires]
-python_version = "2.7"
+python_version = "3.11"
+
+[scripts]
+gloo-chat = "python main.py"
+format = "black ."
+"format:check" = "black --check ."
+test = "pytest"
+"test:coverage" = "pytest --cov=. --cov-report=term-missing --cov-fail-under=70"
