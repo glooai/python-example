@@ -82,16 +82,12 @@ def test_get_chat_completion_posts_expected_payload(monkeypatch):
     assert captured["timeout"] == 30
 
 
-def test_describe_expiration_reads_claim(monkeypatch):
-    monkeypatch.setattr(
-        main,
-        "jwt_decode",
-        lambda token, options=None: {"exp": 1700000000, "token": token},
-    )
+def test_describe_expiration_uses_expires_in(monkeypatch):
+    monkeypatch.setattr(main.time, "time", lambda: 1_700_000_000)
 
-    expiration = main.describe_expiration("dummy-token")
+    expiration = main.describe_expiration({"expires_in": 120})
 
-    assert expiration == 1700000000
+    assert expiration == 1700000120
 
 
 def test_main_happy_path(monkeypatch, capsys):
