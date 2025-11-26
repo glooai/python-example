@@ -14,12 +14,12 @@ For the full walkthrough, see the official quickstart docs: https://docs.gloo.co
 ## Setup
 
 1. Ensure Python 3.11 is available.
-2. Create `.env` (already gitignored) with:
+2. Copy `.env.example` to `.env` (already gitignored) and populate it with:
    ```
    GLOO_AI_CLIENT_ID=...
    GLOO_AI_CLIENT_SECRET=...
    ```
-   The provided demo values are already placed in `.env` for convenience; replace if you have org-specific credentials.
+   The example file contains placeholders only; replace them with your credentials (or use org-provided demo values).
 3. Install deps and lock via pipenv:
    ```bash
    pipenv install --python 3.11
@@ -43,3 +43,4 @@ Uses `black` via the Pipfile script to format the repository.
 
 - A 403 usually means the token lacks the right scope or the Authorization header is malformed. This example uses `grant_type=client_credentials` with `scope=api/access` and sets `Authorization: Bearer <token>`, matching the published quickstart.
 - If you rotate credentials, update `.env` and rerun.
+- GitHub Actions picks up `GLOO_AI_CLIENT_ID` and `GLOO_AI_CLIENT_SECRET` from repository secrets (with non-sensitive fallback demo strings for forked PRs); add your own secrets to avoid noisy failures.
