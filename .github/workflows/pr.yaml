@@ -4,8 +4,8 @@ on:
   pull_request:
 
 env:
-  GLOO_AI_CLIENT_ID: test-gloo-ai-client-id
-  GLOO_AI_CLIENT_SECRET: test-gloo-ai-client-secret
+  GLOO_AI_CLIENT_ID: ${{ secrets.GLOO_AI_CLIENT_ID || 'demo-gloo-ai-client-id' }}
+  GLOO_AI_CLIENT_SECRET: ${{ secrets.GLOO_AI_CLIENT_SECRET || 'demo-gloo-ai-client-secret' }}
 
 jobs:
   format-check:
