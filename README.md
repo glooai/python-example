@@ -31,6 +31,29 @@ For the full walkthrough, see the official quickstart docs: https://docs.gloo.co
 pipenv run gloo-chat
 ```
 
+## Structured output + typed refusal handling (GAI-5626)
+
+`structured_output.py` is a strict superset of the quickstart that demonstrates the platform contract for structured outputs and typed safety refusals against `gloo-anthropic-claude-haiku-4.5` (V2 endpoint). It defines a pydantic model, sends a `response_format: json_schema` request, and branches on the response shape:
+
+- **Happy path** — `finish_reason="stop"` with JSON-stringified content. Pydantic validates the schema and the example prints the parsed object.
+- **Refusal path** — `finish_reason="content_filter"` with `message.refusal` populated. The example prints the typed refusal without string-matching `error.text` or message content.
+
+Run the example:
+
+```bash
+pipenv run gloo-structured "Plan a 3-day trip to Tokyo with two daily activities each day."
+```
+
+Set `GLOO_AI_BASE_URL` to point at a Porter preview env if you're testing against an `ai-api` build with the Phase 1 / Phase 2 flags flipped:
+
+```bash
+GLOO_AI_BASE_URL=https://dev-ai-api-XXXX.onporter.run pipenv run gloo-structured "..."
+```
+
+The unit tests in `tests/test_structured_output.py` cover the parser branches without hitting the network — run them with `pipenv run test`.
+
+This file lands as the Python companion to GAI-5626 and stays alongside `main.py` rather than replacing it; `main.py` remains the v1 quickstart that the official docs link to. See [the architecture decision on GAI-5626](https://linear.app/gloo/issue/GAI-5626/ai-sdk-structured-output-anthropic-refusals-advertise) for why this is one of five companion PRs across the platform.
+
 ## Format
 
 ```bash
